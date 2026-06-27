@@ -32,9 +32,9 @@ const calculateAllocation = (holdings) => {
   const calcPercent = (val) => total > 0 ? Math.round((val / total) * 100) : 0;
 
   const result = [];
-  if (usEquity > 0) result.push({ name: 'US Equity', percentage: calcPercent(usEquity), value: usEquity, color: '#7c6aff' });
-  if (indianEquity > 0) result.push({ name: 'Indian Equity', percentage: calcPercent(indianEquity), value: indianEquity, color: '#4effd6' });
-  if (crypto > 0) result.push({ name: 'Crypto', percentage: calcPercent(crypto), value: crypto, color: '#ffd166' });
+  if (usEquity > 0) result.push({ name: 'US Equity', percentage: calcPercent(usEquity), value: usEquity, color: '#10B981' });
+  if (indianEquity > 0) result.push({ name: 'Indian Equity', percentage: calcPercent(indianEquity), value: indianEquity, color: '#36FFC4' });
+  if (crypto > 0) result.push({ name: 'Crypto', percentage: calcPercent(crypto), value: crypto, color: '#36FFC4' });
 
   return result;
 };

@@ -17,7 +17,7 @@ const SpendingChart = ({ data = [], labels = [] }) => {
   }, [chartData]);
 
   const barColors = useMemo(
-    () => chartData.map((val) => (val > average ? '#ff6b6b' : '#7c6aff')),
+    () => chartData.map((val) => (val > average ? '#ff6b6b' : '#10B981')),
     [chartData, average]
   );
 
@@ -26,8 +26,8 @@ const SpendingChart = ({ data = [], labels = [] }) => {
     backgroundGradientFromOpacity: 0,
     backgroundGradientTo: 'transparent',
     backgroundGradientToOpacity: 0,
-    color: () => '#7c6aff',
-    labelColor: () => '#8884a8',
+    color: () => '#10B981',
+    labelColor: () => '#859399',
     barPercentage: 0.6,
     decimalPlaces: 0,
     propsForBackgroundLines: {
@@ -66,7 +66,7 @@ const SpendingChart = ({ data = [], labels = [] }) => {
       {/* Custom color overlay — legend */}
       <View style={styles.legend}>
         <View style={styles.legendItem}>
-          <View style={[styles.legendDot, { backgroundColor: '#7c6aff' }]} />
+          <View style={[styles.legendDot, { backgroundColor: '#10B981' }]} />
           <Text style={styles.legendText}>Normal</Text>
         </View>
         <View style={styles.legendItem}>
@@ -80,11 +80,11 @@ const SpendingChart = ({ data = [], labels = [] }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 20,
     padding: 16,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.06)',
+    borderColor: '#1E293B',
   },
   chart: {
     borderRadius: 16,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   legendText: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 11,
     fontFamily: 'SpaceMono',
   },

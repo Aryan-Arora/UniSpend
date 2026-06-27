@@ -64,13 +64,13 @@ const RewardCard = ({
 
         {isClaimed ? (
           <View style={styles.claimedBtn}>
-            <Text style={styles.claimedText}>Claimed ✓</Text>
+            <Text style={styles.claimedText}>Claimed</Text>
           </View>
         ) : (
           <TouchableOpacity onPress={onClaim} disabled={!isActive} activeOpacity={0.9}>
             {isActive ? (
               <LinearGradient
-                colors={['#7c6aff', '#9b8aff']}
+                colors={['#10B981', '#36FFC4']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={styles.claimBtn}
@@ -93,15 +93,15 @@ const styles = StyleSheet.create({
   card: {
     width: CARD_WIDTH,
     minHeight: 210,
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.07)',
+    borderColor: '#1E293B',
     borderRadius: 16,
     padding: 12,
   },
   activeCard: {
-    borderColor: 'rgba(124,106,255,0.5)',
-    shadowColor: '#7c6aff',
+    borderColor: 'rgba(16, 185, 129, 0.5)',
+    shadowColor: '#10B981',
     shadowOpacity: 0.2,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 0 },
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 14,
-    backgroundColor: 'rgba(124,106,255,0.1)',
+    backgroundColor: 'rgba(16, 185, 129, 0.1)',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -125,24 +125,24 @@ const styles = StyleSheet.create({
     fontSize: 22,
   },
   cashbackBadge: {
-    backgroundColor: 'rgba(78,255,214,0.15)',
+    backgroundColor: 'rgba(54, 255, 196, 0.15)',
     borderRadius: 8,
     paddingHorizontal: 8,
     paddingVertical: 5,
   },
   cashbackText: {
-    color: '#4effd6',
+    color: '#36FFC4',
     fontSize: 11,
     fontFamily: 'SpaceMono-Bold',
   },
   merchantName: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 14,
     fontFamily: 'Syne-Bold',
     marginBottom: 4,
   },
   category: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 11,
     marginBottom: 12,
   },
@@ -152,12 +152,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   minSpend: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 11,
     fontFamily: 'SpaceMono',
   },
   expiry: {
-    color: '#ffd166',
+    color: '#36FFC4',
     fontSize: 11,
     fontFamily: 'SpaceMono',
   },
@@ -175,10 +175,10 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingVertical: 9,
     alignItems: 'center',
-    backgroundColor: '#3b384d',
+    backgroundColor: '#1E293B',
   },
   claimedText: {
-    color: '#9f9cb4',
+    color: '#859399',
     fontSize: 12,
     fontFamily: 'Syne-Bold',
   },
@@ -186,10 +186,10 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingVertical: 9,
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: '#1E293B',
   },
   inactiveText: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
     fontFamily: 'Syne-Bold',
   },

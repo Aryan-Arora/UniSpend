@@ -1,20 +1,20 @@
 const CATEGORY_MAP = {
-  'FOOD_AND_DRINK': { name: 'Food', color: '#7c6aff', icon: '🍽️' },
-  'Food & Drink': { name: 'Food', color: '#7c6aff', icon: '🍽️' },
-  'TRAVEL': { name: 'Transport', color: '#4effd6', icon: '🚗' },
-  'TRANSPORTATION': { name: 'Transport', color: '#4effd6', icon: '🚗' },
-  'Transport': { name: 'Transport', color: '#4effd6', icon: '🚗' },
-  'ENTERTAINMENT': { name: 'Entertainment', color: '#ffd166', icon: '🎬' },
-  'Entertainment': { name: 'Entertainment', color: '#ffd166', icon: '🎬' },
+  'FOOD_AND_DRINK': { name: 'Food', color: '#10B981', icon: '🍽️' },
+  'Food & Drink': { name: 'Food', color: '#10B981', icon: '🍽️' },
+  'TRAVEL': { name: 'Transport', color: '#36FFC4', icon: '🚗' },
+  'TRANSPORTATION': { name: 'Transport', color: '#36FFC4', icon: '🚗' },
+  'Transport': { name: 'Transport', color: '#36FFC4', icon: '🚗' },
+  'ENTERTAINMENT': { name: 'Entertainment', color: '#36FFC4', icon: '🎬' },
+  'Entertainment': { name: 'Entertainment', color: '#36FFC4', icon: '🎬' },
   'SHOPPING': { name: 'Shopping', color: '#ff6b6b', icon: '🛍️' },
   'GENERAL_MERCHANDISE': { name: 'Shopping', color: '#ff6b6b', icon: '🛍️' },
   'Shops': { name: 'Shopping', color: '#ff6b6b', icon: '🛍️' },
-  'SERVICE': { name: 'Subscriptions', color: '#c084fc', icon: '📱' },
-  'RENT_AND_UTILITIES': { name: 'Subscriptions', color: '#c084fc', icon: '📱' },
-  'Subscription': { name: 'Subscriptions', color: '#c084fc', icon: '📱' },
+  'SERVICE': { name: 'Subscriptions', color: '#36FFC4', icon: '📱' },
+  'RENT_AND_UTILITIES': { name: 'Subscriptions', color: '#36FFC4', icon: '📱' },
+  'Subscription': { name: 'Subscriptions', color: '#36FFC4', icon: '📱' },
 };
 
-const DEFAULT_CATEGORY = { name: 'Others', color: '#888888', icon: '📋' };
+const DEFAULT_CATEGORY = { name: 'Others', color: '#859399', icon: '📋' };
 
 const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 

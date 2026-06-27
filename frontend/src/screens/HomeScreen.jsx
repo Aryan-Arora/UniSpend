@@ -15,13 +15,15 @@ import LinearGradient from 'react-native-linear-gradient';
 import { useHome } from '../hooks/useHome';
 import HealthScoreBadge from '../components/HealthScoreBadge';
 import AIUnavailableCard from '../components/AIUnavailableCard';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iconForEmoji } from '../utils/iconMap';
 
 const { width } = Dimensions.get('window');
 
 const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 const SkeletonBlock = ({ w, h, style }) => (
-  <View style={[{ width: w, height: h, backgroundColor: '#1e1e28', borderRadius: 12 }, style]} />
+  <View style={[{ width: w, height: h, backgroundColor: '#1E293B', borderRadius: 12 }, style]} />
 );
 
 const KPICard = ({ title, value, gradient, icon, subValue, subColor }) => (
@@ -34,14 +36,14 @@ const KPICard = ({ title, value, gradient, icon, subValue, subColor }) => (
     />
     <Text style={styles.kpiLabel}>{title}</Text>
     <Text style={styles.kpiValue}>{value}</Text>
-    {subValue && <Text style={[styles.kpiSub, { color: subColor || '#4effd6' }]}>{subValue}</Text>}
+    {subValue && <Text style={[styles.kpiSub, { color: subColor || '#36FFC4' }]}>{subValue}</Text>}
   </View>
 );
 
 const CategoryItem = ({ name, amount, icon, color, progress }) => (
   <View style={styles.categoryItem}>
     <View style={styles.categoryLeft}>
-      <Text style={styles.categoryIcon}>{icon}</Text>
+      <Ionicons name={iconForEmoji(icon)} size={16} color={color} style={styles.categoryIcon} />
       <Text style={styles.categoryName}>{name}</Text>
     </View>
     <Text style={[styles.categoryAmount, { fontFamily: 'SpaceMono' }]}>₹{amount}</Text>
@@ -53,14 +55,14 @@ const CategoryItem = ({ name, amount, icon, color, progress }) => (
 
 const TransactionItem = ({ name, date, amount, icon, positive }) => (
   <View style={styles.txRow}>
-    <View style={[styles.txIcon, { backgroundColor: positive ? 'rgba(78, 255, 214, 0.1)' : 'rgba(124, 106, 255, 0.1)' }]}>
-      <Text style={styles.txEmoji}>{icon}</Text>
+    <View style={[styles.txIcon, { backgroundColor: positive ? 'rgba(54, 255, 196, 0.1)' : 'rgba(16, 185, 129, 0.1)' }]}>
+      <Ionicons name={iconForEmoji(icon)} size={20} color={positive ? '#36FFC4' : '#E0E3E5'} />
     </View>
     <View style={styles.txInfo}>
       <Text style={styles.txName}>{name}</Text>
       <Text style={styles.txDate}>{date}</Text>
     </View>
-    <Text style={[styles.txAmount, { color: positive ? '#4effd6' : '#ff6b6b' }]}>
+    <Text style={[styles.txAmount, { color: positive ? '#36FFC4' : '#ff6b6b' }]}>
       {positive ? '+' : '-'}₹{amount}
     </Text>
   </View>
@@ -69,14 +71,14 @@ const TransactionItem = ({ name, date, amount, icon, positive }) => (
 const InsightCard = ({ title, message, icon }) => (
   <View style={styles.insightCard}>
     <View style={styles.insightIconWrap}>
-      <Text style={styles.insightEmoji}>{icon}</Text>
+      <Ionicons name={iconForEmoji(icon)} size={18} color="#36FFC4" />
     </View>
     <View style={styles.insightTextWrap}>
       <Text style={styles.insightTitle}>{title}</Text>
       <Text style={styles.insightMsg}>{message}</Text>
     </View>
     <TouchableOpacity style={styles.insightAction}>
-      <Text style={styles.insightActionIcon}>💬</Text>
+      <Ionicons name="chatbubble-ellipses-outline" size={16} color="#04140E" />
     </TouchableOpacity>
   </View>
 );
@@ -124,8 +126,8 @@ const HomeScreen = ({ navigation }) => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor="#7c6aff"
-            colors={['#7c6aff']}
+            tintColor="#10B981"
+            colors={['#10B981']}
           />
         }
       >
@@ -136,17 +138,17 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.avatarText}>{userName?.charAt(0) || 'S'}</Text>
             </View>
             <View>
-              <Text style={styles.greeting}>Hey, {userName || 'Sarthak'} 👋</Text>
+              <Text style={styles.greeting}>Hey, {userName || 'Sarthak'}</Text>
             </View>
           </View>
           <TouchableOpacity style={styles.notifBtn}>
-            <Text style={styles.notifIcon}>🔔</Text>
+            <Ionicons name="notifications-outline" size={20} color="#E0E3E5" />
           </TouchableOpacity>
         </View>
 
         {/* Hero Balance */}
         <LinearGradient
-          colors={['#1a1a2e', '#16213e']}
+          colors={['#0F2A24', '#0A1622']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.balanceCard}
@@ -161,9 +163,12 @@ const HomeScreen = ({ navigation }) => {
             )}
           </View>
           <View style={styles.balanceTrend}>
-            <Text style={styles.trendIcon}>
-              {aiSpendingTrend === 'increasing' ? '📈' : aiSpendingTrend === 'decreasing' ? '📉' : '➡️'}
-            </Text>
+            <Ionicons
+              name={aiSpendingTrend === 'increasing' ? 'trending-up' : aiSpendingTrend === 'decreasing' ? 'trending-down' : 'remove-outline'}
+              size={14}
+              color="#36FFC4"
+              style={styles.trendIcon}
+            />
             <Text style={styles.trendText}>
               {balance
                 ? `${(balance.accounts || []).length} linked accounts`
@@ -193,7 +198,7 @@ const HomeScreen = ({ navigation }) => {
               <View key={idx} style={styles.barCol}>
                 <View style={styles.barWrapper}>
                   <LinearGradient
-                    colors={day.isHigh ? ['#7c6aff', '#9b8aff'] : ['rgba(124, 106, 255, 0.1)', 'rgba(124, 106, 255, 0.05)']}
+                    colors={day.isHigh ? ['#10B981', '#36FFC4'] : ['rgba(16, 185, 129, 0.1)', 'rgba(16, 185, 129, 0.05)']}
                     style={[
                       styles.bar,
                       { 
@@ -227,9 +232,9 @@ const HomeScreen = ({ navigation }) => {
 
         {/* AI Insights */}
         <View style={styles.insightsHeader}>
-          <Text style={styles.insightsIcon}>✨</Text>
+          <Ionicons name="sparkles-outline" size={18} color="#36FFC4" style={styles.insightsIcon} />
           <Text style={styles.sectionTitle}>AI Insights</Text>
-          {aiLoading && <ActivityIndicator size="small" color="#7c6aff" style={{ marginLeft: 8 }} />}
+          {aiLoading && <ActivityIndicator size="small" color="#10B981" style={{ marginLeft: 8 }} />}
         </View>
         {!aiAvailable && !aiLoading ? (
           <AIUnavailableCard onRetry={onRefresh} />
@@ -263,11 +268,11 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0f',
+    backgroundColor: '#060B14',
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#0a0a0f',
+    backgroundColor: '#060B14',
     padding: 24,
     paddingTop: 80,
   },
@@ -290,18 +295,18 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#7c6aff',
+    backgroundColor: '#10B981',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
   },
   avatarText: {
-    color: '#fff',
+    color: '#04140E',
     fontSize: 18,
     fontWeight: '700',
   },
   greeting: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 20,
     fontWeight: '700',
   },
@@ -309,11 +314,11 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.06)',
+    borderColor: '#1E293B',
   },
   notifIcon: {
     fontSize: 20,
@@ -323,7 +328,7 @@ const styles = StyleSheet.create({
     padding: 24,
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: 'rgba(78, 255, 214, 0.15)',
+    borderColor: 'rgba(54, 255, 196, 0.15)',
   },
   balanceTopRow: {
     flexDirection: 'row',
@@ -331,14 +336,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   balanceLabel: {
-    color: '#4effd6',
+    color: '#36FFC4',
     fontSize: 13,
     fontWeight: '600',
     letterSpacing: 0.5,
     marginBottom: 6,
   },
   balanceAmount: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 38,
     fontWeight: '700',
     letterSpacing: 1,
@@ -353,7 +358,7 @@ const styles = StyleSheet.create({
     marginRight: 6,
   },
   trendText: {
-    color: '#4effd6',
+    color: '#36FFC4',
     fontSize: 13,
     fontWeight: '500',
   },
@@ -365,11 +370,11 @@ const styles = StyleSheet.create({
   },
   kpiCard: {
     width: (width - 50) / 2,
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 16,
     padding: 16,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.06)',
+    borderColor: '#1E293B',
     overflow: 'hidden',
   },
   kpiGradientStrip: {
@@ -380,7 +385,7 @@ const styles = StyleSheet.create({
     height: 3,
   },
   kpiLabel: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 11,
     fontWeight: '600',
     letterSpacing: 1,
@@ -388,7 +393,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   kpiValue: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 22,
     fontWeight: '700',
   },
@@ -398,12 +403,12 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   trendCard: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 20,
     padding: 20,
     marginBottom: 24,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.06)',
+    borderColor: '#1E293B',
   },
   trendHeader: {
     flexDirection: 'row',
@@ -412,17 +417,17 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   sectionTitle: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 18,
     fontWeight: '700',
     marginBottom: 4,
   },
   sectionSub: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
   },
   trendAvg: {
-    color: '#7c6aff',
+    color: '#10B981',
     fontSize: 16,
     fontWeight: '700',
   },
@@ -451,7 +456,7 @@ const styles = StyleSheet.create({
   barTooltip: {
     position: 'absolute',
     top: -30,
-    backgroundColor: '#7c6aff',
+    backgroundColor: '#10B981',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 8,
@@ -467,23 +472,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   barLabel: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 10,
     fontWeight: '600',
     marginTop: 8,
   },
   barLabelActive: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontWeight: '700',
   },
   categoriesCard: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 20,
     padding: 18,
     marginBottom: 24,
     marginTop: 8,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.06)',
+    borderColor: '#1E293B',
   },
   categoryItem: {
     marginBottom: 16,
@@ -498,13 +503,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   categoryName: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 14,
     fontWeight: '600',
     flex: 1,
   },
   categoryAmount: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 15,
     fontWeight: '700',
     position: 'absolute',
@@ -513,7 +518,7 @@ const styles = StyleSheet.create({
   },
   categoryBarBg: {
     height: 4,
-    backgroundColor: '#2a2a3a',
+    backgroundColor: '#1E293B',
     borderRadius: 2,
     marginTop: 4,
   },
@@ -531,20 +536,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   insightCard: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 16,
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 12,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.06)',
+    borderColor: '#1E293B',
   },
   insightIconWrap: {
     width: 42,
     height: 42,
     borderRadius: 21,
-    backgroundColor: 'rgba(78, 255, 214, 0.1)',
+    backgroundColor: 'rgba(54, 255, 196, 0.1)',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 14,
@@ -556,13 +561,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   insightTitle: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 14,
     fontWeight: '700',
     marginBottom: 3,
   },
   insightMsg: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
     lineHeight: 17,
   },
@@ -570,7 +575,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 10,
-    backgroundColor: '#7c6aff',
+    backgroundColor: '#10B981',
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 10,
@@ -586,19 +591,19 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   seeAll: {
-    color: '#7c6aff',
+    color: '#10B981',
     fontSize: 14,
     fontWeight: '600',
   },
   txRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 16,
     padding: 14,
     marginBottom: 8,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.06)',
+    borderColor: '#1E293B',
   },
   txIcon: {
     width: 44,
@@ -615,13 +620,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   txName: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 15,
     fontWeight: '600',
     marginBottom: 3,
   },
   txDate: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 11,
   },
   txAmount: {
@@ -629,15 +634,15 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   emptyInsights: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 14,
     padding: 20,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.06)',
+    borderColor: '#1E293B',
   },
   emptyInsightsText: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 13,
   },
 });

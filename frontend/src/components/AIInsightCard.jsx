@@ -3,9 +3,9 @@ import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 
 const TYPE_COLOR = {
   alert: '#ff6b6b',
-  suggestion: '#4effd6',
-  insight: '#7c6aff',
-  anomaly: '#ffd166',
+  suggestion: '#36FFC4',
+  insight: '#10B981',
+  anomaly: '#36FFC4',
 };
 
 const AIInsightCard = ({
@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   card: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.07)',
+    borderColor: '#1E293B',
     borderRadius: 16,
     padding: 14,
     flexDirection: 'row',
@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   title: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 14,
     fontFamily: 'Syne-Bold',
     flexShrink: 1,
   },
   description: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 13,
     lineHeight: 20,
   },
@@ -105,11 +105,11 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   savingLabel: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
   },
   savingAmount: {
-    color: '#4effd6',
+    color: '#36FFC4',
     fontSize: 13,
     fontFamily: 'SpaceMono-Bold',
   },

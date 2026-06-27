@@ -9,6 +9,8 @@ import {
   Dimensions,
   Alert,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iconForEmoji } from '../utils/iconMap';
 import Svg, { Circle, G } from 'react-native-svg';
 import LinearGradient from 'react-native-linear-gradient';
 import { useProfile } from '../hooks/useProfile';
@@ -21,7 +23,7 @@ const { width } = Dimensions.get('window');
 const SettingRow = ({ icon, title, subtitle, onPress, showArrow = true }) => (
   <TouchableOpacity style={styles.settingRow} onPress={onPress}>
     <View style={styles.settingIcon}>
-      <Text style={styles.settingEmoji}>{icon}</Text>
+      <Ionicons name={iconForEmoji(icon)} size={20} color="#36FFC4" />
     </View>
     <View style={styles.settingInfo}>
       <Text style={styles.settingTitle}>{title}</Text>
@@ -67,7 +69,7 @@ const ProfileScreen = ({ navigation }) => {
     );
   };
 
-  const riskColor = riskScore < 40 ? '#4effd6' : riskScore < 70 ? '#ffd166' : '#ff6b6b';
+  const riskColor = riskScore < 40 ? '#36FFC4' : riskScore < 70 ? '#36FFC4' : '#ff6b6b';
   const initials = (profile?.name || '')
     .split(' ')
     .map((n) => n?.[0] || '')
@@ -81,14 +83,14 @@ const ProfileScreen = ({ navigation }) => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#7c6aff" colors={['#7c6aff']} />
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#10B981" colors={['#10B981']} />
         }
       >
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Profile</Text>
           <TouchableOpacity style={styles.editBtn}>
-            <Text style={styles.editIcon}>✏️</Text>
+            <Ionicons name="pencil" size={20} color="#E0E3E5" />
           </TouchableOpacity>
         </View>
 
@@ -100,14 +102,14 @@ const ProfileScreen = ({ navigation }) => {
           <Text style={styles.profileName}>{profile?.name || ''}</Text>
           <Text style={styles.profileEmail}>{profile?.email || ''}</Text>
           <View style={styles.memberBadge}>
-            <Text style={styles.memberText}>{segment ? `🌟 ${segment}` : ''}</Text>
+            <Text style={styles.memberText}>{segment || ''}</Text>
           </View>
         </View>
 
         {/* AI Financial Intelligence */}
         {!aiLoading && aiAvailable && (
           <View style={styles.aiCard}>
-            <Text style={styles.cardTitle}>🤖 AI Financial Intelligence</Text>
+            <Text style={styles.cardTitle}>AI Financial Intelligence</Text>
             <View style={styles.aiRow}>
               <HealthScoreBadge score={aiHealthScore} />
               <SpenderTypeBadge type={aiSpenderType} />
@@ -126,7 +128,7 @@ const ProfileScreen = ({ navigation }) => {
                   cx="60"
                   cy="60"
                   r="50"
-                  stroke="rgba(124, 106, 255, 0.1)"
+                  stroke="rgba(16, 185, 129, 0.1)"
                   strokeWidth="10"
                   fill="none"
                 />
@@ -163,7 +165,7 @@ const ProfileScreen = ({ navigation }) => {
           </View>
           <View style={styles.emergencyBarBg}>
             <LinearGradient
-              colors={['#4effd6', '#2cb5a0']}
+              colors={['#36FFC4', '#10B981']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={[styles.emergencyBarFill, {
@@ -182,15 +184,15 @@ const ProfileScreen = ({ navigation }) => {
           {connectedAccounts.map((account, idx) => (
             <View key={idx} style={styles.accountRow}>
               <View style={[styles.accountIcon, { backgroundColor: account.color + '22' }]}>
-                <Text style={styles.accountEmoji}>{account.icon}</Text>
+                <Ionicons name={iconForEmoji(account.icon)} size={20} color="#36FFC4" />
               </View>
               <View style={styles.accountInfo}>
                 <Text style={styles.accountName}>{account.name}</Text>
                 <Text style={styles.accountType}>{account.type}</Text>
               </View>
               <View style={styles.accountStatus}>
-                <View style={[styles.statusDot, { backgroundColor: account.connected ? '#4effd6' : '#ff6b6b' }]} />
-                <Text style={[styles.statusText, { color: account.connected ? '#4effd6' : '#ff6b6b' }]}>
+                <View style={[styles.statusDot, { backgroundColor: account.connected ? '#36FFC4' : '#ff6b6b' }]} />
+                <Text style={[styles.statusText, { color: account.connected ? '#36FFC4' : '#ff6b6b' }]}>
                   {account.connected ? 'Active' : 'Disconnected'}
                 </Text>
               </View>
@@ -215,7 +217,7 @@ const ProfileScreen = ({ navigation }) => {
 
         {/* Logout */}
         <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
-          <Text style={styles.logoutIcon}>🚪</Text>
+          <Ionicons name="log-out-outline" size={20} color="#E0E3E5" />
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
 
@@ -228,56 +230,56 @@ const ProfileScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0a0a0f' },
+  container: { flex: 1, backgroundColor: '#060B14' },
   scrollContent: { paddingHorizontal: 20, paddingTop: 54 },
   header: {
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20,
   },
-  headerTitle: { color: '#f0efff', fontSize: 24, fontWeight: '700' },
+  headerTitle: { color: '#E0E3E5', fontSize: 24, fontWeight: '700' },
   editBtn: {
-    width: 40, height: 40, borderRadius: 12, backgroundColor: '#17171f',
-    alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    width: 40, height: 40, borderRadius: 12, backgroundColor: '#0F172A',
+    alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#1E293B',
   },
   editIcon: { fontSize: 16 },
   profileCard: {
-    backgroundColor: '#17171f', borderRadius: 20, padding: 28, alignItems: 'center', marginBottom: 20,
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: '#0F172A', borderRadius: 20, padding: 28, alignItems: 'center', marginBottom: 20,
+    borderWidth: 1, borderColor: '#1E293B',
   },
   avatarLarge: {
-    width: 80, height: 80, borderRadius: 40, backgroundColor: '#7c6aff',
+    width: 80, height: 80, borderRadius: 40, backgroundColor: '#10B981',
     alignItems: 'center', justifyContent: 'center', marginBottom: 16,
-    borderWidth: 3, borderColor: 'rgba(124, 106, 255, 0.4)',
+    borderWidth: 3, borderColor: 'rgba(16, 185, 129, 0.4)',
   },
   avatarInitials: { color: '#fff', fontSize: 28, fontWeight: '700' },
-  profileName: { color: '#f0efff', fontSize: 22, fontWeight: '700', marginBottom: 4 },
-  profileEmail: { color: '#8884a8', fontSize: 14, marginBottom: 12 },
+  profileName: { color: '#E0E3E5', fontSize: 22, fontWeight: '700', marginBottom: 4 },
+  profileEmail: { color: '#859399', fontSize: 14, marginBottom: 12 },
   memberBadge: {
-    backgroundColor: 'rgba(255, 209, 102, 0.12)', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 6,
+    backgroundColor: 'rgba(54, 255, 196, 0.12)', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 6,
   },
-  memberText: { color: '#ffd166', fontSize: 13, fontWeight: '600' },
+  memberText: { color: '#36FFC4', fontSize: 13, fontWeight: '600' },
   riskCard: {
-    backgroundColor: '#17171f', borderRadius: 20, padding: 24, alignItems: 'center', marginBottom: 16,
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: '#0F172A', borderRadius: 20, padding: 24, alignItems: 'center', marginBottom: 16,
+    borderWidth: 1, borderColor: '#1E293B',
   },
-  cardTitle: { color: '#f0efff', fontSize: 16, fontWeight: '700', marginBottom: 16 },
+  cardTitle: { color: '#E0E3E5', fontSize: 16, fontWeight: '700', marginBottom: 16 },
   riskGauge: { width: 120, height: 120, alignItems: 'center', justifyContent: 'center', position: 'relative', marginBottom: 12 },
   riskCircleInner: { position: 'absolute', alignItems: 'center' },
   riskScoreText: { fontSize: 32, fontWeight: '700' },
-  riskOutOf: { color: '#8884a8', fontSize: 12 },
+  riskOutOf: { color: '#859399', fontSize: 12 },
   riskLabel: { fontSize: 16, fontWeight: '700', marginBottom: 4 },
-  riskDesc: { color: '#8884a8', fontSize: 12, textAlign: 'center' },
+  riskDesc: { color: '#859399', fontSize: 12, textAlign: 'center' },
   emergencyCard: {
-    backgroundColor: '#17171f', borderRadius: 20, padding: 20, marginBottom: 16,
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: '#0F172A', borderRadius: 20, padding: 20, marginBottom: 16,
+    borderWidth: 1, borderColor: '#1E293B',
   },
   emergencyHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 },
-  emergencyTarget: { color: '#4effd6', fontSize: 13, fontWeight: '700' },
-  emergencyBarBg: { height: 8, backgroundColor: '#2a2a3a', borderRadius: 4, marginBottom: 8 },
+  emergencyTarget: { color: '#36FFC4', fontSize: 13, fontWeight: '700' },
+  emergencyBarBg: { height: 8, backgroundColor: '#1E293B', borderRadius: 4, marginBottom: 8 },
   emergencyBarFill: { height: 8, borderRadius: 4 },
-  emergencyPct: { color: '#8884a8', fontSize: 12 },
+  emergencyPct: { color: '#859399', fontSize: 12 },
   accountsCard: {
-    backgroundColor: '#17171f', borderRadius: 20, padding: 20, marginBottom: 24,
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: '#0F172A', borderRadius: 20, padding: 20, marginBottom: 24,
+    borderWidth: 1, borderColor: '#1E293B',
   },
   accountRow: {
     flexDirection: 'row', alignItems: 'center', paddingVertical: 12,
@@ -288,8 +290,8 @@ const styles = StyleSheet.create({
   },
   accountEmoji: { fontSize: 18 },
   accountInfo: { flex: 1 },
-  accountName: { color: '#f0efff', fontSize: 14, fontWeight: '600' },
-  accountType: { color: '#8884a8', fontSize: 12, marginTop: 1 },
+  accountName: { color: '#E0E3E5', fontSize: 14, fontWeight: '600' },
+  accountType: { color: '#859399', fontSize: 12, marginTop: 1 },
   accountStatus: { flexDirection: 'row', alignItems: 'center' },
   statusDot: { width: 6, height: 6, borderRadius: 3, marginRight: 6 },
   statusText: { fontSize: 12, fontWeight: '600' },
@@ -297,26 +299,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
     paddingVertical: 14, marginTop: 8,
   },
-  addAccountIcon: { color: '#7c6aff', fontSize: 18, marginRight: 8 },
-  addAccountText: { color: '#7c6aff', fontSize: 14, fontWeight: '600' },
-  sectionTitle: { color: '#f0efff', fontSize: 18, fontWeight: '700', marginBottom: 14 },
+  addAccountIcon: { color: '#10B981', fontSize: 18, marginRight: 8 },
+  addAccountText: { color: '#10B981', fontSize: 14, fontWeight: '600' },
+  sectionTitle: { color: '#E0E3E5', fontSize: 18, fontWeight: '700', marginBottom: 14 },
   settingsGroup: {
-    backgroundColor: '#17171f', borderRadius: 20, overflow: 'hidden', marginBottom: 24,
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: '#0F172A', borderRadius: 20, overflow: 'hidden', marginBottom: 24,
+    borderWidth: 1, borderColor: '#1E293B',
   },
   settingRow: {
     flexDirection: 'row', alignItems: 'center', padding: 16,
     borderBottomWidth: 1, borderBottomColor: 'rgba(255,255,255,0.04)',
   },
   settingIcon: {
-    width: 38, height: 38, borderRadius: 10, backgroundColor: '#1e1e28',
+    width: 38, height: 38, borderRadius: 10, backgroundColor: '#1E293B',
     alignItems: 'center', justifyContent: 'center', marginRight: 14,
   },
   settingEmoji: { fontSize: 16 },
   settingInfo: { flex: 1 },
-  settingTitle: { color: '#f0efff', fontSize: 14, fontWeight: '600' },
-  settingSub: { color: '#8884a8', fontSize: 12, marginTop: 1 },
-  settingArrow: { color: '#8884a8', fontSize: 22, fontWeight: '300' },
+  settingTitle: { color: '#E0E3E5', fontSize: 14, fontWeight: '600' },
+  settingSub: { color: '#859399', fontSize: 12, marginTop: 1 },
+  settingArrow: { color: '#859399', fontSize: 22, fontWeight: '300' },
   logoutBtn: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
     backgroundColor: 'rgba(255, 107, 107, 0.08)', borderRadius: 16,
@@ -324,14 +326,14 @@ const styles = StyleSheet.create({
   },
   logoutIcon: { fontSize: 18, marginRight: 8 },
   logoutText: { color: '#ff6b6b', fontSize: 16, fontWeight: '700' },
-  versionText: { color: '#8884a8', fontSize: 12, textAlign: 'center', marginBottom: 10 },
+  versionText: { color: '#859399', fontSize: 12, textAlign: 'center', marginBottom: 10 },
   aiCard: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 18,
     padding: 18,
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: 'rgba(124, 106, 255, 0.15)',
+    borderColor: 'rgba(16, 185, 129, 0.15)',
   },
   aiRow: {
     flexDirection: 'row',

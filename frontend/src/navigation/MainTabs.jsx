@@ -52,7 +52,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
                   <Ionicons
                     name={isFocused ? iconConfig.active : iconConfig.inactive}
                     size={22}
-                    color={isFocused ? '#7c6aff' : '#8884a8'}
+                    color={isFocused ? '#10B981' : '#859399'}
                   />
                   {isFocused && <View style={styles.activeDot} />}
                 </View>
@@ -104,11 +104,11 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.07)',
+    borderColor: '#1E293B',
   },
   tabBarInner: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(17, 17, 24, 0.95)',
+    backgroundColor: 'rgba(6, 11, 20, 0.95)',
     paddingVertical: 10,
     paddingHorizontal: 8,
     borderRadius: 30,
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
   },
   tabButtonActive: {
-    backgroundColor: 'rgba(124, 106, 255, 0.12)',
+    backgroundColor: 'rgba(16, 185, 129, 0.12)',
   },
   activeDot: {
     position: 'absolute',
@@ -133,16 +133,16 @@ const styles = StyleSheet.create({
     width: 5,
     height: 5,
     borderRadius: 2.5,
-    backgroundColor: '#7c6aff',
+    backgroundColor: '#10B981',
   },
   tabLabel: {
     fontSize: 10,
     fontWeight: '500',
-    color: '#8884a8',
+    color: '#859399',
     marginTop: 4,
   },
   tabLabelActive: {
-    color: '#7c6aff',
+    color: '#10B981',
     fontWeight: '600',
   },
 });

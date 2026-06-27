@@ -4,8 +4,8 @@ import Svg, { Circle, Line, Path } from 'react-native-svg';
 
 const zoneForScore = (score) => {
   if (score <= 33) return { label: 'Conservative', color: '#ff6b6b' };
-  if (score <= 66) return { label: 'Moderate', color: '#ffd166' };
-  return { label: 'Aggressive', color: '#4effd6' };
+  if (score <= 66) return { label: 'Moderate', color: '#36FFC4' };
+  return { label: 'Aggressive', color: '#36FFC4' };
 };
 
 const polarToCartesian = (cx, cy, radius, angleDegrees) => {
@@ -55,12 +55,12 @@ const RiskGauge = ({ score = 0, size = 200, showLabel = true }) => {
     <View style={[styles.container, { width: size }]}>
       <View style={{ width: size, height: gaugeHeight }}>
         <Svg width={size} height={gaugeHeight}>
-          <Path d={arcPath(centerX, centerY, radius, -180, 0)} stroke="#1e1e28" strokeWidth={strokeWidth} fill="none" strokeLinecap="round" />
+          <Path d={arcPath(centerX, centerY, radius, -180, 0)} stroke="#1E293B" strokeWidth={strokeWidth} fill="none" strokeLinecap="round" />
           <Path d={arcPath(centerX, centerY, radius, -180, -120)} stroke="#ff6b6b" strokeWidth={strokeWidth} fill="none" strokeLinecap="round" />
-          <Path d={arcPath(centerX, centerY, radius, -120, -60)} stroke="#ffd166" strokeWidth={strokeWidth} fill="none" strokeLinecap="round" />
-          <Path d={arcPath(centerX, centerY, radius, -60, 0)} stroke="#4effd6" strokeWidth={strokeWidth} fill="none" strokeLinecap="round" />
-          <Line x1={centerX} y1={centerY} x2={needleX} y2={needleY} stroke="#f0efff" strokeWidth={2} strokeLinecap="round" />
-          <Circle cx={centerX} cy={centerY} r={4} fill="#f0efff" />
+          <Path d={arcPath(centerX, centerY, radius, -120, -60)} stroke="#36FFC4" strokeWidth={strokeWidth} fill="none" strokeLinecap="round" />
+          <Path d={arcPath(centerX, centerY, radius, -60, 0)} stroke="#36FFC4" strokeWidth={strokeWidth} fill="none" strokeLinecap="round" />
+          <Line x1={centerX} y1={centerY} x2={needleX} y2={needleY} stroke="#E0E3E5" strokeWidth={2} strokeLinecap="round" />
+          <Circle cx={centerX} cy={centerY} r={4} fill="#E0E3E5" />
         </Svg>
         <View style={styles.centerTextWrap}>
           <Text style={styles.scoreText}>{Math.round(clampedScore)}</Text>
@@ -69,8 +69,8 @@ const RiskGauge = ({ score = 0, size = 200, showLabel = true }) => {
       </View>
       <View style={styles.legendRow}>
         <Text style={[styles.legendText, { color: '#ff6b6b' }]}>Low</Text>
-        <Text style={[styles.legendText, { color: '#ffd166' }]}>Medium</Text>
-        <Text style={[styles.legendText, { color: '#4effd6' }]}>High</Text>
+        <Text style={[styles.legendText, { color: '#36FFC4' }]}>Medium</Text>
+        <Text style={[styles.legendText, { color: '#36FFC4' }]}>High</Text>
       </View>
     </View>
   );
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   scoreText: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 32,
     fontFamily: 'SpaceMono-Bold',
     lineHeight: 36,

@@ -10,6 +10,8 @@ import {
   StatusBar,
   Image,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iconForEmoji } from '../utils/iconMap';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -81,18 +83,18 @@ const SplashScreen = ({ navigation }) => {
       <View style={styles.illustrationContainer}>
         <View style={styles.illustrationBox}>
           <View style={styles.iconCircle}>
-            <Text style={styles.mainIcon}>{item.icon}</Text>
+            <Ionicons name={iconForEmoji(item.icon)} size={48} color="#36FFC4" />
           </View>
         </View>
         <View style={styles.badgeRow}>
           <View style={styles.badge}>
-            <Text style={styles.badgeIcon}>{item.badge1}</Text>
+            <Ionicons name={iconForEmoji(item.badge1)} size={18} color="#859399" />
           </View>
           <View style={[styles.badge, styles.badgeActive]}>
-            <Text style={styles.badgeIcon}>{item.badge2}</Text>
+            <Ionicons name={iconForEmoji(item.badge2)} size={18} color="#36FFC4" />
           </View>
           <View style={styles.badge}>
-            <Text style={styles.badgeIcon}>{item.badge3}</Text>
+            <Ionicons name={iconForEmoji(item.badge3)} size={18} color="#859399" />
           </View>
         </View>
       </View>
@@ -124,7 +126,7 @@ const SplashScreen = ({ navigation }) => {
       {index === SLIDES.length - 1 && (
         <TouchableOpacity style={styles.continueButton} onPress={goToAuth}>
           <LinearGradient
-            colors={['#7c6aff', '#9b8aff']}
+            colors={['#10B981', '#36FFC4']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.continueGradient}
@@ -146,7 +148,7 @@ const SplashScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#0a0a0f" />
+      <StatusBar barStyle="light-content" backgroundColor="#060B14" />
 
       {currentIndex === 0 && (
         <View style={styles.logoContainer}>
@@ -201,7 +203,7 @@ const SplashScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0f',
+    backgroundColor: '#060B14',
   },
   logoContainer: {
     alignItems: 'center',
@@ -220,7 +222,7 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#f0efff',
+    color: '#E0E3E5',
     letterSpacing: 1,
   },
   slide: {
@@ -278,22 +280,22 @@ const styles = StyleSheet.create({
   illustrationBox: {
     width: width * 0.65,
     height: width * 0.5,
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.06)',
+    borderColor: '#1E293B',
   },
   iconCircle: {
     width: 90,
     height: 90,
     borderRadius: 20,
-    backgroundColor: '#1e1e28',
+    backgroundColor: '#1E293B',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(124, 106, 255, 0.4)',
+    borderColor: 'rgba(16, 185, 129, 0.4)',
   },
   mainIcon: {
     fontSize: 42,
@@ -307,15 +309,15 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.06)',
+    borderColor: '#1E293B',
   },
   badgeActive: {
-    borderColor: '#7c6aff',
-    backgroundColor: 'rgba(124, 106, 255, 0.15)',
+    borderColor: '#10B981',
+    backgroundColor: 'rgba(16, 185, 129, 0.15)',
   },
   badgeIcon: {
     fontSize: 18,
@@ -326,16 +328,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: '700',
-    color: '#f0efff',
+    color: '#E0E3E5',
     lineHeight: 40,
     marginBottom: 14,
   },
   titleAccent: {
-    color: '#7c6aff',
+    color: '#10B981',
   },
   description: {
     fontSize: 15,
-    color: '#8884a8',
+    color: '#859399',
     lineHeight: 24,
   },
   dotsContainer: {
@@ -350,11 +352,11 @@ const styles = StyleSheet.create({
   },
   dotActive: {
     width: 28,
-    backgroundColor: '#7c6aff',
+    backgroundColor: '#10B981',
   },
   dotInactive: {
     width: 8,
-    backgroundColor: '#8884a8',
+    backgroundColor: '#859399',
   },
   continueButton: {
     marginBottom: 16,
@@ -377,11 +379,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   loginText: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 14,
   },
   loginHighlight: {
-    color: '#7c6aff',
+    color: '#10B981',
     fontWeight: '600',
   },
 });

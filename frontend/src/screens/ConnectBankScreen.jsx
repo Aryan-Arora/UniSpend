@@ -14,12 +14,14 @@ import { open, create } from 'react-native-plaid-link-sdk';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAuth } from '../context/AuthContext';
 import { plaidAPI } from '../services/api';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iconForEmoji } from '../utils/iconMap';
 
 
 const POPULAR_BANKS = [
-  { id: 'chase', name: 'Chase', icon: '🏦', color: '#1a73e8' },
-  { id: 'boa', name: 'Bank of America', icon: '🔴', color: '#e31837' },
-  { id: 'wells', name: 'Wells Fargo', icon: '🟠', color: '#d71e28' },
+  { id: 'chase', name: 'Chase', icon: '🏦', color: '#859399' },
+  { id: 'boa', name: 'Bank of America', icon: '🔴', color: '#859399' },
+  { id: 'wells', name: 'Wells Fargo', icon: '🟠', color: '#859399' },
 ];
 
 const ConnectBankScreen = ({ navigation }) => {
@@ -111,12 +113,12 @@ const ConnectBankScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#0a0a0f" />
+      <StatusBar barStyle="light-content" backgroundColor="#060B14" />
 
       {/* Full-screen loading overlay for token exchange */}
       <Modal visible={isExchanging} transparent animationType="fade">
         <View style={styles.loadingOverlay}>
-          <ActivityIndicator size="large" color="#7c6aff" />
+          <ActivityIndicator size="large" color="#10B981" />
           <Text style={styles.loadingText}>Connecting your account...</Text>
         </View>
       </Modal>
@@ -136,7 +138,7 @@ const ConnectBankScreen = ({ navigation }) => {
               }
             }}
           >
-            <Text style={styles.backArrow}>←</Text>
+            <Ionicons name="arrow-back" size={24} color="#E0E3E5" />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Unispend</Text>
           <View style={{ width: 24 }} />
@@ -145,7 +147,7 @@ const ConnectBankScreen = ({ navigation }) => {
         {isLinked ? (
           <View style={styles.successContainer}>
             <View style={styles.successCircle}>
-              <Text style={styles.successIcon}>✓</Text>
+              <Ionicons name="checkmark" size={50} color="#04140E" />
             </View>
             <Text style={styles.successTitle}>Bank Connected!</Text>
             <Text style={styles.successSubtitle}>
@@ -158,26 +160,26 @@ const ConnectBankScreen = ({ navigation }) => {
               <View style={styles.shieldContainer}>
                 <View style={styles.shieldOuter}>
                   <View style={styles.shieldInner}>
-                    <Text style={styles.shieldIcon}>🛡️</Text>
+                    <Ionicons name="shield-checkmark" size={36} color="#04140E" />
                   </View>
                 </View>
               </View>
               <View style={styles.securityBadges}>
                 <View style={styles.secBadge}>
-                  <Text style={styles.secBadgeIcon}>🏛️</Text>
+                  <Ionicons name="business-outline" size={18} color="#859399" />
                 </View>
                 <View style={[styles.secBadge, styles.secBadgeActive]}>
-                  <Text style={styles.secBadgeIcon}>🔗</Text>
+                  <Ionicons name="link-outline" size={18} color="#36FFC4" />
                 </View>
                 <View style={styles.secBadge}>
-                  <Text style={styles.secBadgeIcon}>📄</Text>
+                  <Ionicons name="document-text-outline" size={18} color="#859399" />
                 </View>
               </View>
             </View>
 
             <Text style={styles.title}>Connect your bank</Text>
             <View style={styles.securedRow}>
-              <Text style={styles.securedIcon}>✅</Text>
+              <Ionicons name="checkmark-circle" size={15} color="#36FFC4" style={styles.securedIcon} />
               <Text style={styles.securedText}>Secured by Plaid</Text>
             </View>
           </>
@@ -186,10 +188,10 @@ const ConnectBankScreen = ({ navigation }) => {
         {/* Error card */}
         {errorMessage && (
           <View style={styles.errorCard}>
-            <Text style={styles.errorIcon}>⚠️</Text>
+            <Ionicons name="warning-outline" size={18} color="#ff6b6b" style={styles.errorIcon} />
             <Text style={styles.errorText}>{errorMessage}</Text>
             <TouchableOpacity onPress={() => setErrorMessage(null)}>
-              <Text style={styles.errorDismiss}>✕</Text>
+              <Ionicons name="close" size={18} color="#ff6b6b" />
             </TouchableOpacity>
           </View>
         )}
@@ -208,10 +210,10 @@ const ConnectBankScreen = ({ navigation }) => {
                 onPress={() => setSelectedBank(bank.id)}
               >
                 <View style={[styles.bankIcon, { backgroundColor: bank.color + '22' }]}>
-                  <Text style={styles.bankEmoji}>{bank.icon}</Text>
+                  <Ionicons name={iconForEmoji(bank.icon)} size={20} color="#E0E3E5" />
                 </View>
                 <Text style={styles.bankName}>{bank.name}</Text>
-                <Text style={styles.bankArrow}>›</Text>
+                <Ionicons name="chevron-forward" size={20} color="#859399" />
               </TouchableOpacity>
             ))}
 
@@ -221,11 +223,11 @@ const ConnectBankScreen = ({ navigation }) => {
 
             <View style={styles.trustBadges}>
               <View style={styles.trustItem}>
-                <Text style={styles.trustIcon}>🔒</Text>
+                <Ionicons name="lock-closed-outline" size={22} color="#859399" style={styles.trustIcon} />
                 <Text style={styles.trustLabel}>256-BIT{'\n'}ENCRYPTION</Text>
               </View>
               <View style={styles.trustItem}>
-                <Text style={styles.trustIcon}>🛡️</Text>
+                <Ionicons name="shield-checkmark-outline" size={22} color="#859399" style={styles.trustIcon} />
                 <Text style={styles.trustLabel}>BANK-LEVEL{'\n'}SECURITY</Text>
               </View>
             </View>
@@ -240,15 +242,15 @@ const ConnectBankScreen = ({ navigation }) => {
               disabled={isLoading}
             >
               <LinearGradient
-                colors={['#7c6aff', '#9b8aff']}
+                colors={['#10B981', '#36FFC4']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={styles.connectGradient}
               >
                 {isLoading ? (
-                  <ActivityIndicator color="#fff" />
+                  <ActivityIndicator color="#04140E" />
                 ) : (
-                  <Text style={styles.connectText}>Connect Bank Account ⚡</Text>
+                  <Text style={styles.connectText}>Connect Bank Account</Text>
                 )}
               </LinearGradient>
             </TouchableOpacity>
@@ -270,7 +272,7 @@ const ConnectBankScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0f',
+    backgroundColor: '#060B14',
   },
   scrollContent: {
     paddingHorizontal: 24,
@@ -284,24 +286,24 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   backArrow: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 22,
   },
   headerTitle: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 18,
     fontWeight: '700',
     fontFamily: 'Syne-Bold',
     letterSpacing: 0.5,
   },
   heroCard: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 24,
     padding: 32,
     alignItems: 'center',
     marginBottom: 28,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.06)',
+    borderColor: '#1E293B',
   },
   shieldContainer: {
     marginBottom: 20,
@@ -310,17 +312,17 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 28,
-    backgroundColor: '#1e1e28',
+    backgroundColor: '#1E293B',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(124, 106, 255, 0.3)',
+    borderColor: 'rgba(16, 185, 129, 0.3)',
   },
   shieldInner: {
     width: 80,
     height: 80,
     borderRadius: 20,
-    backgroundColor: '#7c6aff',
+    backgroundColor: '#10B981',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -335,15 +337,15 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 12,
-    backgroundColor: '#1e1e28',
+    backgroundColor: '#1E293B',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.06)',
+    borderColor: '#1E293B',
   },
   secBadgeActive: {
-    borderColor: '#7c6aff',
-    backgroundColor: 'rgba(124, 106, 255, 0.15)',
+    borderColor: '#10B981',
+    backgroundColor: 'rgba(16, 185, 129, 0.15)',
   },
   secBadgeIcon: {
     fontSize: 18,
@@ -352,7 +354,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '700',
     fontFamily: 'Syne-Bold',
-    color: '#f0efff',
+    color: '#E0E3E5',
     textAlign: 'center',
     marginBottom: 10,
   },
@@ -367,12 +369,12 @@ const styles = StyleSheet.create({
     marginRight: 6,
   },
   securedText: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 14,
     fontWeight: '500',
   },
   sectionLabel: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
     fontWeight: '600',
     letterSpacing: 1.5,
@@ -381,16 +383,16 @@ const styles = StyleSheet.create({
   bankRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 16,
     padding: 16,
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.06)',
+    borderColor: '#1E293B',
   },
   bankRowSelected: {
-    borderColor: '#7c6aff',
-    backgroundColor: 'rgba(124, 106, 255, 0.08)',
+    borderColor: '#10B981',
+    backgroundColor: 'rgba(16, 185, 129, 0.08)',
   },
   bankIcon: {
     width: 44,
@@ -405,12 +407,12 @@ const styles = StyleSheet.create({
   },
   bankName: {
     flex: 1,
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 16,
     fontWeight: '600',
   },
   bankArrow: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 24,
     fontWeight: '300',
   },
@@ -419,7 +421,7 @@ const styles = StyleSheet.create({
     marginVertical: 18,
   },
   searchLinkText: {
-    color: '#7c6aff',
+    color: '#10B981',
     fontSize: 15,
     fontWeight: '600',
   },
@@ -437,7 +439,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   trustLabel: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 10,
     fontFamily: 'SpaceMono',
     fontWeight: '600',
@@ -455,12 +457,12 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   connectText: {
-    color: '#ffffff',
+    color: '#04140E',
     fontSize: 17,
     fontWeight: '700',
   },
   disclaimer: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
     textAlign: 'center',
     lineHeight: 18,
@@ -471,7 +473,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   skipText: {
-    color: '#7c6aff',
+    color: '#10B981',
     fontSize: 15,
     fontWeight: '500',
   },
@@ -505,12 +507,12 @@ const styles = StyleSheet.create({
   // Loading overlay
   loadingOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(10, 10, 15, 0.92)',
+    backgroundColor: 'rgba(6, 11, 20, 0.92)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   loadingText: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 16,
     fontWeight: '600',
     marginTop: 20,
@@ -525,11 +527,11 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: '#4effd6',
+    backgroundColor: '#36FFC4',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 24,
-    shadowColor: '#4effd6',
+    shadowColor: '#36FFC4',
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.3,
     shadowRadius: 20,
@@ -537,19 +539,19 @@ const styles = StyleSheet.create({
   },
   successIcon: {
     fontSize: 50,
-    color: '#0a0a0f',
+    color: '#060B14',
     fontWeight: '700',
   },
   successTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontFamily: 'Syne-Bold',
     marginBottom: 12,
   },
   successSubtitle: {
     fontSize: 16,
-    color: '#8884a8',
+    color: '#859399',
     textAlign: 'center',
     lineHeight: 24,
     paddingHorizontal: 20,

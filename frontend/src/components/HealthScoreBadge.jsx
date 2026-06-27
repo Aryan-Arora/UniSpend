@@ -9,8 +9,8 @@ import { View, Text, StyleSheet } from 'react-native';
 // ─────────────────────────────────────────────────────────────
 
 const getScoreColor = (score) => {
-  if (score >= 70) return '#4effd6';
-  if (score >= 40) return '#ffd166';
+  if (score >= 70) return '#36FFC4';
+  if (score >= 40) return '#36FFC4';
   return '#ff6b6b';
 };
 
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   title: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 11,
     fontWeight: '500',
   },

@@ -5,7 +5,7 @@ import { filterByMonth } from '../utils/dataTransformers';
 import { useAIInsights } from './useAIInsights';
 
 const ACCOUNT_ICONS = { depository: '🏦', credit: '💳', investment: '📈', loan: '🏛️' };
-const ACCOUNT_COLORS = { depository: '#1a73e8', credit: '#ff6b6b', investment: '#4effd6', loan: '#ffd166' };
+const ACCOUNT_COLORS = { depository: '#859399', credit: '#ff6b6b', investment: '#36FFC4', loan: '#36FFC4' };
 
 export const useProfile = () => {
   const { user } = useAuth();
@@ -57,7 +57,7 @@ export const useProfile = () => {
         name: acc.name || acc.official_name || 'Account',
         type: acc.subtype || acc.type || 'Account',
         icon: ACCOUNT_ICONS[acc.type] || '🏦',
-        color: ACCOUNT_COLORS[acc.type] || '#1a73e8',
+        color: ACCOUNT_COLORS[acc.type] || '#859399',
         connected: true,
         balance: acc.current,
         available: acc.available,

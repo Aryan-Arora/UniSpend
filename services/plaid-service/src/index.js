@@ -56,13 +56,24 @@ app.use((req, res, next) => {
 // POST /link-token
 app.post('/link-token', verifyToken, async (req, res) => {
   try {
-    const response = await plaidClient.linkTokenCreate({
+    const linkTokenRequest = {
       client_name: 'Unispend',
       user: { client_user_id: req.user.uid },
       products: ['transactions'],
       country_codes: ['US'],
       language: 'en',
-    });
+    };
+
+    // Required for Android OAuth banks (Chase, BofA, etc.) to redirect back
+    // into the app after authenticating in the browser. The package name must
+    // also be registered under "Allowed Android package names" in the Plaid
+    // Dashboard, otherwise Plaid rejects the request. Env-gated so the flow
+    // stays unchanged until the dashboard registration is in place.
+    if (process.env.PLAID_ANDROID_PACKAGE_NAME) {
+      linkTokenRequest.android_package_name = process.env.PLAID_ANDROID_PACKAGE_NAME;
+    }
+
+    const response = await plaidClient.linkTokenCreate(linkTokenRequest);
 
     res.status(200).json({ link_token: response.data.link_token });
   } catch (error) {

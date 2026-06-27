@@ -16,11 +16,11 @@ const Stack = createNativeStackNavigator();
 const darkTheme = {
   dark: true,
   colors: {
-    primary: '#7c6aff',
-    background: '#0a0a0f',
-    card: '#17171f',
-    text: '#f0efff',
-    border: 'rgba(255,255,255,0.06)',
+    primary: '#10B981',
+    background: '#060B14',
+    card: '#0F172A',
+    text: '#E0E3E5',
+    border: '#1E293B',
     notification: '#ff6b6b',
   },
   fonts: {
@@ -40,7 +40,7 @@ function AppNavigator() {
         <View style={styles.loadingLogo}>
           <Text style={styles.loadingLogoText}>U</Text>
         </View>
-        <ActivityIndicator size="large" color="#7c6aff" style={{ marginTop: 24 }} />
+        <ActivityIndicator size="large" color="#10B981" style={{ marginTop: 24 }} />
       </View>
     );
   }
@@ -49,7 +49,7 @@ function AppNavigator() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: '#0a0a0f' },
+        contentStyle: { backgroundColor: '#060B14' },
         animation: 'slide_from_right',
       }}
     >
@@ -75,7 +75,7 @@ function AppNavigator() {
 export default function App() {
   return (
     <View style={styles.rootContainer}>
-      <StatusBar barStyle="light-content" backgroundColor="#0a0a0f" translucent={false} />
+      <StatusBar barStyle="light-content" backgroundColor="#060B14" translucent={false} />
       <AuthProvider>
         <AIInsightsProvider>
           <NavigationContainer theme={darkTheme}>
@@ -90,11 +90,11 @@ export default function App() {
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    backgroundColor: '#0a0a0f',
+    backgroundColor: '#060B14',
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#0a0a0f',
+    backgroundColor: '#060B14',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -102,17 +102,17 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 24,
-    backgroundColor: '#7c6aff',
+    backgroundColor: '#10B981',
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#7c6aff',
+    shadowColor: '#10B981',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.4,
     shadowRadius: 16,
     elevation: 10,
   },
   loadingLogoText: {
-    color: '#fff',
+    color: '#04140E',
     fontSize: 36,
     fontFamily: 'Syne-Bold',
     fontWeight: '700',

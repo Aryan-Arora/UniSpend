@@ -14,6 +14,8 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useCopilot } from '../hooks/useCopilot';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iconForEmoji } from '../utils/iconMap';
 
 const { width } = Dimensions.get('window');
 
@@ -28,7 +30,7 @@ const MessageBubble = ({ message }) => {
     <View style={[styles.bubbleRow, isUser && styles.bubbleRowUser]}>
       {!isUser && (
         <View style={styles.avatarSmall}>
-          <Text style={styles.avatarEmoji}>🤖</Text>
+          <Ionicons name="sparkles" size={16} color="#36FFC4" />
         </View>
       )}
       <View
@@ -49,7 +51,7 @@ const MessageBubble = ({ message }) => {
       </View>
       {isUser && (
         <View style={styles.avatarSmallUser}>
-          <Text style={styles.avatarEmoji}>👤</Text>
+          <Ionicons name="person" size={16} color="#36FFC4" />
         </View>
       )}
     </View>
@@ -63,7 +65,7 @@ const formatBoldText = (text) => {
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return (
-        <Text key={i} style={{ fontWeight: '800', color: '#f0efff' }}>
+        <Text key={i} style={{ fontWeight: '800', color: '#E0E3E5' }}>
           {part.slice(2, -2)}
         </Text>
       );
@@ -79,7 +81,7 @@ const formatBoldText = (text) => {
 const TypingIndicator = () => (
   <View style={[styles.bubbleRow]}>
     <View style={styles.avatarSmall}>
-      <Text style={styles.avatarEmoji}>🤖</Text>
+      <Ionicons name="sparkles" size={20} color="#E0E3E5" />
     </View>
     <View style={[styles.bubble, styles.bubbleAssistant, styles.typingBubble]}>
       <View style={styles.typingDots}>
@@ -145,13 +147,13 @@ const CopilotScreen = () => {
     >
       {/* Header */}
       <LinearGradient
-        colors={['#0f0f18', '#0a0a0f']}
+        colors={['#0B1220', '#060B14']}
         style={styles.header}
       >
         <View style={styles.headerContent}>
           <View style={styles.headerAvatar}>
-            <Text style={styles.headerAvatarText}>🤖</Text>
-            <View style={[styles.statusDot, { backgroundColor: aiAvailable ? '#4effd6' : '#ff6b6b' }]} />
+            <Ionicons name="sparkles" size={22} color="#36FFC4" />
+            <View style={[styles.statusDot, { backgroundColor: aiAvailable ? '#36FFC4' : '#ff6b6b' }]} />
           </View>
           <View style={styles.headerInfo}>
             <Text style={styles.headerTitle}>Unispend Co-pilot</Text>
@@ -159,7 +161,7 @@ const CopilotScreen = () => {
               {aiLoading ? 'Syncing data...' : aiAvailable ? 'Online • Analyzing your finances' : 'Connecting...'}
             </Text>
           </View>
-          {aiLoading && <ActivityIndicator size="small" color="#7c6aff" />}
+          {aiLoading && <ActivityIndicator size="small" color="#10B981" />}
         </View>
       </LinearGradient>
 
@@ -220,7 +222,7 @@ const CopilotScreen = () => {
             <TextInput
               style={styles.textInput}
               placeholder="Ask about your finances..."
-              placeholderTextColor="#4a4660"
+              placeholderTextColor="#5A6572"
               value={inputText}
               onChangeText={setInputText}
               onSubmitEditing={handleSend}
@@ -236,10 +238,10 @@ const CopilotScreen = () => {
             activeOpacity={0.7}
           >
             <LinearGradient
-              colors={inputText.trim() && !isTyping ? ['#7c6aff', '#9b8aff'] : ['#2a2a3a', '#2a2a3a']}
+              colors={inputText.trim() && !isTyping ? ['#10B981', '#36FFC4'] : ['#1E293B', '#1E293B']}
               style={styles.sendGradient}
             >
-              <Text style={styles.sendIcon}>↑</Text>
+              <Ionicons name="arrow-up" size={20} color="#04140E" />
             </LinearGradient>
           </TouchableOpacity>
         </View>
@@ -255,7 +257,7 @@ const CopilotScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0f',
+    backgroundColor: '#060B14',
   },
 
   // Header
@@ -264,7 +266,7 @@ const styles = StyleSheet.create({
     paddingBottom: 14,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255, 255, 255, 0.06)',
+    borderBottomColor: '#1E293B',
   },
   headerContent: {
     flexDirection: 'row',
@@ -274,7 +276,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: 'rgba(124, 106, 255, 0.15)',
+    backgroundColor: 'rgba(16, 185, 129, 0.15)',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
@@ -291,18 +293,18 @@ const styles = StyleSheet.create({
     height: 12,
     borderRadius: 6,
     borderWidth: 2,
-    borderColor: '#0a0a0f',
+    borderColor: '#060B14',
   },
   headerInfo: {
     flex: 1,
   },
   headerTitle: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 18,
     fontWeight: '700',
   },
   headerStatus: {
-    color: '#4effd6',
+    color: '#36FFC4',
     fontSize: 12,
     fontWeight: '500',
     marginTop: 2,
@@ -331,7 +333,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: 'rgba(124, 106, 255, 0.12)',
+    backgroundColor: 'rgba(16, 185, 129, 0.12)',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 8,
@@ -341,7 +343,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: 'rgba(78, 255, 214, 0.12)',
+    backgroundColor: 'rgba(54, 255, 196, 0.12)',
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 8,
@@ -357,22 +359,22 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   bubbleAssistant: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderBottomLeftRadius: 4,
     borderWidth: 1,
-    borderColor: 'rgba(124, 106, 255, 0.1)',
+    borderColor: 'rgba(16, 185, 129, 0.1)',
   },
   bubbleUser: {
-    backgroundColor: '#7c6aff',
+    backgroundColor: '#10B981',
     borderBottomRightRadius: 4,
   },
   bubbleText: {
-    color: '#d4d0f0',
+    color: '#CBD2D8',
     fontSize: 14,
     lineHeight: 21,
   },
   bubbleTextUser: {
-    color: '#ffffff',
+    color: '#04140E',
   },
   bubbleTime: {
     color: 'rgba(255, 255, 255, 0.3)',
@@ -396,11 +398,11 @@ const styles = StyleSheet.create({
     width: 7,
     height: 7,
     borderRadius: 3.5,
-    backgroundColor: '#7c6aff',
+    backgroundColor: '#10B981',
     opacity: 0.6,
   },
   typingText: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
     fontStyle: 'italic',
     marginLeft: 4,
@@ -412,7 +414,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   quickActionsLabel: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
     fontWeight: '600',
     letterSpacing: 0.5,
@@ -425,15 +427,15 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   chip: {
-    backgroundColor: 'rgba(124, 106, 255, 0.1)',
+    backgroundColor: 'rgba(16, 185, 129, 0.1)',
     borderRadius: 20,
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderWidth: 1,
-    borderColor: 'rgba(124, 106, 255, 0.2)',
+    borderColor: 'rgba(16, 185, 129, 0.2)',
   },
   chipText: {
-    color: '#c4b5fd',
+    color: '#5EE0BE',
     fontSize: 13,
     fontWeight: '600',
   },
@@ -445,9 +447,9 @@ const styles = StyleSheet.create({
 
   // Input
   inputContainer: {
-    backgroundColor: '#0f0f18',
+    backgroundColor: '#0B1220',
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255, 255, 255, 0.06)',
+    borderTopColor: '#1E293B',
     paddingHorizontal: 16,
     paddingTop: 10,
     paddingBottom: Platform.OS === 'ios' ? 34 : 100,
@@ -459,16 +461,16 @@ const styles = StyleSheet.create({
   },
   inputWrapper: {
     flex: 1,
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 24,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.08)',
+    borderColor: '#1E293B',
     paddingHorizontal: 18,
     minHeight: 48,
     justifyContent: 'center',
   },
   textInput: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 15,
     paddingVertical: 12,
     maxHeight: 100,
@@ -490,7 +492,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
   sendIcon: {
-    color: '#fff',
+    color: '#04140E',
     fontSize: 20,
     fontWeight: '700',
   },

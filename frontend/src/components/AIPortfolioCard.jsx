@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iconForEmoji } from '../utils/iconMap';
 
 // ─────────────────────────────────────────────────────────────
 // AIPortfolioCard
@@ -7,7 +9,7 @@ import { View, Text, StyleSheet } from 'react-native';
 // Displays AI-recommended asset allocation with colored bars.
 // ─────────────────────────────────────────────────────────────
 
-const COLORS = ['#7c6aff', '#4effd6', '#ffd166', '#ff6b6b', '#c084fc', '#60a5fa'];
+const COLORS = ['#10B981', '#36FFC4', '#36FFC4', '#ff6b6b', '#36FFC4', '#36FFC4'];
 
 const AIPortfolioCard = ({ portfolio = [], advice = '' }) => {
   if (!portfolio || portfolio.length === 0) return null;
@@ -15,7 +17,7 @@ const AIPortfolioCard = ({ portfolio = [], advice = '' }) => {
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Text style={styles.aiIcon}>🤖</Text>
+        <Ionicons name="sparkles" size={20} color="#E0E3E5" />
         <Text style={styles.title}>AI Portfolio Suggestion</Text>
       </View>
 
@@ -42,7 +44,7 @@ const AIPortfolioCard = ({ portfolio = [], advice = '' }) => {
 
       {advice ? (
         <View style={styles.adviceBox}>
-          <Text style={styles.adviceIcon}>💡</Text>
+          <Ionicons name="bulb-outline" size={20} color="#E0E3E5" />
           <Text style={styles.adviceText}>{advice}</Text>
         </View>
       ) : null}
@@ -52,11 +54,11 @@ const AIPortfolioCard = ({ portfolio = [], advice = '' }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 18,
     padding: 18,
     borderWidth: 1,
-    borderColor: 'rgba(124, 106, 255, 0.15)',
+    borderColor: 'rgba(16, 185, 129, 0.15)',
   },
   header: {
     flexDirection: 'row',
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   title: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 15,
     fontWeight: '700',
     fontFamily: 'Syne-Bold',
@@ -90,20 +92,20 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   assetName: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 12,
     fontWeight: '600',
     flexShrink: 1,
   },
   ticker: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 10,
     fontFamily: 'SpaceMono',
   },
   barContainer: {
     flex: 1,
     height: 6,
-    backgroundColor: 'rgba(255, 255, 255, 0.06)',
+    backgroundColor: '#1E293B',
     borderRadius: 3,
     marginHorizontal: 10,
     overflow: 'hidden',
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
   },
   adviceBox: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(124, 106, 255, 0.08)',
+    backgroundColor: 'rgba(16, 185, 129, 0.08)',
     borderRadius: 12,
     padding: 12,
     marginTop: 6,
@@ -133,7 +135,7 @@ const styles = StyleSheet.create({
     marginTop: 1,
   },
   adviceText: {
-    color: '#c4b5fd',
+    color: '#5EE0BE',
     fontSize: 12,
     lineHeight: 18,
     flex: 1,

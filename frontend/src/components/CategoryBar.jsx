@@ -65,19 +65,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   categoryName: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 14,
     fontWeight: '500',
   },
   amount: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 14,
     fontFamily: 'SpaceMono',
     fontWeight: '600',
   },
   track: {
     height: 6,
-    backgroundColor: 'rgba(255, 255, 255, 0.06)',
+    backgroundColor: '#1E293B',
     borderRadius: 3,
     overflow: 'hidden',
   },

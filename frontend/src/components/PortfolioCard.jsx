@@ -3,16 +3,16 @@ import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 
 const PLATFORM_STYLE = {
   alpaca: {
-    backgroundColor: 'rgba(124,106,255,0.16)',
-    color: '#7c6aff',
+    backgroundColor: 'rgba(16, 185, 129, 0.16)',
+    color: '#10B981',
   },
   kite: {
-    backgroundColor: 'rgba(78,255,214,0.16)',
-    color: '#4effd6',
+    backgroundColor: 'rgba(54, 255, 196, 0.16)',
+    color: '#36FFC4',
   },
   binance: {
-    backgroundColor: 'rgba(255,209,102,0.18)',
-    color: '#ffd166',
+    backgroundColor: 'rgba(54, 255, 196, 0.18)',
+    color: '#36FFC4',
   },
 };
 
@@ -71,14 +71,14 @@ const PortfolioCard = ({
           </View>
           <View style={styles.right}>
             <Text style={styles.currentPrice}>{formatInr(currentPrice)}</Text>
-            <Text style={[styles.dayChange, { color: dayPositive ? '#4effd6' : '#ff6b6b' }]}>{dayText}</Text>
+            <Text style={[styles.dayChange, { color: dayPositive ? '#36FFC4' : '#ff6b6b' }]}>{dayText}</Text>
           </View>
         </View>
 
         <View style={styles.bottomRow}>
           <Text style={styles.metaText}>Qty: {quantity}</Text>
           <Text style={styles.metaText}>Avg: {formatInr(avgPrice)}</Text>
-          <Text style={[styles.pnl, { color: pnlPositive ? '#4effd6' : '#ff6b6b' }]}>
+          <Text style={[styles.pnl, { color: pnlPositive ? '#36FFC4' : '#ff6b6b' }]}>
             P&L: {pnlPositive ? '+' : ''}
             {formatInr(pnl)}
           </Text>
@@ -91,9 +91,9 @@ const PortfolioCard = ({
 const styles = StyleSheet.create({
   card: {
     width: '100%',
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.07)',
+    borderColor: '#1E293B',
     borderRadius: 16,
     padding: 14,
   },
@@ -111,13 +111,13 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: 'rgba(124,106,255,0.15)',
+    backgroundColor: 'rgba(16, 185, 129, 0.15)',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,
   },
   avatarText: {
-    color: '#7c6aff',
+    color: '#10B981',
     fontFamily: 'Syne-Bold',
     fontSize: 14,
   },
@@ -125,12 +125,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   symbol: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 15,
     fontFamily: 'Syne-Bold',
   },
   companyName: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
     marginTop: 2,
     marginBottom: 6,
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   currentPrice: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 15,
     fontFamily: 'SpaceMono-Bold',
   },
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   metaText: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
     fontFamily: 'SpaceMono',
   },

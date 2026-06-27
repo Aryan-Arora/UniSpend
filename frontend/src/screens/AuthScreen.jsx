@@ -13,6 +13,8 @@ import {
   Alert,
   Image,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iconForEmoji } from '../utils/iconMap';
 import LinearGradient from 'react-native-linear-gradient';
 import { useAuth } from '../context/AuthContext';
 
@@ -55,7 +57,7 @@ const AuthScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#0a0a0f" />
+      <StatusBar barStyle="light-content" backgroundColor="#060B14" />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.keyboardView}
@@ -91,7 +93,7 @@ const AuthScreen = ({ navigation }) => {
               <TextInput
                 style={styles.input}
                 placeholder="name@example.com"
-                placeholderTextColor="#4a4660"
+                placeholderTextColor="#5A6572"
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
@@ -112,7 +114,7 @@ const AuthScreen = ({ navigation }) => {
               <TextInput
                 style={styles.input}
                 placeholder="••••••••"
-                placeholderTextColor="#4a4660"
+                placeholderTextColor="#5A6572"
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry={!showPassword}
@@ -121,7 +123,7 @@ const AuthScreen = ({ navigation }) => {
                 style={styles.eyeButton}
                 onPress={() => setShowPassword(!showPassword)}
               >
-                <Text style={styles.eyeIcon}>{showPassword ? '🙈' : '👁️'}</Text>
+                <Ionicons name={iconForEmoji(showPassword ? '🙈' : '👁️')} size={20} color="#36FFC4" />
               </TouchableOpacity>
             </View>
 
@@ -131,7 +133,7 @@ const AuthScreen = ({ navigation }) => {
               disabled={isLoading}
             >
               <LinearGradient
-                colors={['#7c6aff', '#a78bfa']}
+                colors={['#10B981', '#36FFC4']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={styles.submitGradient}
@@ -157,7 +159,7 @@ const AuthScreen = ({ navigation }) => {
               onPress={handleGoogleSignIn}
             >
               <View style={styles.googleIcon}>
-                <Text style={styles.googleEmoji}>🔷</Text>
+                <Ionicons name="logo-google" size={20} color="#E0E3E5" />
               </View>
               <Text style={styles.googleText}>Sign in with Google</Text>
             </TouchableOpacity>
@@ -183,7 +185,7 @@ const AuthScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0f',
+    backgroundColor: '#060B14',
   },
   keyboardView: {
     flex: 1,
@@ -200,7 +202,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     borderRadius: 125,
-    backgroundColor: 'rgba(124, 106, 255, 0.08)',
+    backgroundColor: 'rgba(16, 185, 129, 0.08)',
   },
   brandContainer: {
     flexDirection: 'row',
@@ -216,19 +218,19 @@ const styles = StyleSheet.create({
   brandName: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#f0efff',
+    color: '#E0E3E5',
     letterSpacing: 0.5,
   },
   heading: {
     fontSize: 36,
     fontWeight: '700',
-    color: '#f0efff',
+    color: '#E0E3E5',
     marginBottom: 10,
     letterSpacing: -0.5,
   },
   subheading: {
     fontSize: 16,
-    color: '#8884a8',
+    color: '#859399',
     lineHeight: 24,
     marginBottom: 40,
   },
@@ -238,14 +240,14 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#f0efff',
+    color: '#E0E3E5',
     marginBottom: 10,
   },
   inputContainer: {
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.07)',
+    borderColor: '#1E293B',
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
@@ -254,7 +256,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     height: 56,
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 16,
   },
   eyeButton: {
@@ -270,7 +272,7 @@ const styles = StyleSheet.create({
   },
   forgotText: {
     fontSize: 13,
-    color: '#7c6aff',
+    color: '#10B981',
     fontWeight: '500',
     marginBottom: 10,
   },
@@ -286,7 +288,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   submitText: {
-    color: '#ffffff',
+    color: '#04140E',
     fontSize: 17,
     fontWeight: '700',
     letterSpacing: 0.5,
@@ -299,10 +301,10 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.07)',
+    backgroundColor: '#1E293B',
   },
   dividerText: {
-    color: '#8884a8',
+    color: '#859399',
     fontSize: 12,
     fontWeight: '500',
     marginHorizontal: 16,
@@ -312,18 +314,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#17171f',
+    backgroundColor: '#0F172A',
     paddingVertical: 16,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.07)',
+    borderColor: '#1E293B',
     marginBottom: 28,
   },
   googleIcon: {
     width: 28,
     height: 28,
     borderRadius: 6,
-    backgroundColor: '#2a2a3a',
+    backgroundColor: '#1E293B',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
@@ -332,7 +334,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   googleText: {
-    color: '#f0efff',
+    color: '#E0E3E5',
     fontSize: 16,
     fontWeight: '600',
   },
@@ -342,10 +344,10 @@ const styles = StyleSheet.create({
   },
   toggleText: {
     fontSize: 15,
-    color: '#8884a8',
+    color: '#859399',
   },
   toggleHighlight: {
-    color: '#4effd6',
+    color: '#36FFC4',
     fontWeight: '600',
   },
 });

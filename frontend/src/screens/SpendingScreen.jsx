@@ -9,6 +9,8 @@ import {
   Dimensions,
   FlatList,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iconForEmoji } from '../utils/iconMap';
 import LinearGradient from 'react-native-linear-gradient';
 import Svg, { Circle } from 'react-native-svg';
 import { useSpending } from '../hooks/useSpending';
@@ -51,7 +53,7 @@ const SpendingScreen = () => {
 
   const renderSuggestion = ({ item }) => (
     <View style={styles.suggestionCard}>
-      <Text style={styles.suggestionIcon}>{item.icon || '🤖'}</Text>
+      <Ionicons name={iconForEmoji(item.icon || '🤖')} size={20} color="#36FFC4" />
       <Text style={styles.suggestionTitle}>{item.title || item.text}</Text>
       {item.message ? <Text style={styles.suggestionMsg}>{item.message}</Text> : null}
       {item.savings ? (
@@ -74,14 +76,14 @@ const SpendingScreen = () => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#7c6aff" colors={['#7c6aff']} />
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#10B981" colors={['#10B981']} />
         }
       >
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Spending Manager</Text>
           <TouchableOpacity style={styles.filterBtn}>
-            <Text style={styles.filterIcon}>⚙️</Text>
+            <Ionicons name="settings-outline" size={20} color="#E0E3E5" />
           </TouchableOpacity>
         </View>
 
@@ -97,13 +99,13 @@ const SpendingScreen = () => {
 
         {/* Total Spent Card */}
         <LinearGradient
-          colors={['#1a1a2e', '#16213e']}
+          colors={['#0F2A24', '#0A1622']}
           style={styles.totalCard}
         >
           <Text style={styles.totalLabel}>Total Spent</Text>
           <Text style={styles.totalAmount}>₹{totalSpent}</Text>
           <View style={styles.totalTrend}>
-            <Text style={styles.totalTrendText}>{monthComparison ? `${monthComparison.direction === 'up' ? '📈' : '📉'} ${monthComparison.direction === 'up' ? '+' : '-'}${monthComparison.change}% vs last month` : ''}</Text>
+            <Text style={styles.totalTrendText}>{monthComparison ? `${monthComparison.direction === 'up' ? '+' : '-'}${monthComparison.change}% vs last month` : ''}</Text>
           </View>
         </LinearGradient>
 
@@ -127,7 +129,7 @@ const SpendingScreen = () => {
                       cx={size / 2}
                       cy={size / 2}
                       r={radius}
-                      stroke="#1e1e2e"
+                      stroke="#1E293B"
                       strokeWidth={strokeWidth}
                       fill="none"
                     />
@@ -186,7 +188,7 @@ const SpendingScreen = () => {
               <View key={idx} style={styles.barCol}>
                 <View style={styles.barWrap}>
                   <LinearGradient
-                    colors={day.isHigh ? ['#ff6b6b', '#ff8e8e'] : ['#7c6aff', '#9b8aff']}
+                    colors={day.isHigh ? ['#ff6b6b', '#ff8e8e'] : ['#10B981', '#36FFC4']}
                     style={[styles.bar, { height: `${(day.amount / maxDaily) * 100}%` }]}
                   />
                 </View>
@@ -214,16 +216,16 @@ const SpendingScreen = () => {
               // More prominent purple palette
               const bg =
                 val === 0
-                  ? '#1a1530'
+                  ? '#0B1220'
                   : val < 0.2
-                  ? '#2d1f6b'
+                  ? '#0A3A2E'
                   : val < 0.4
-                  ? '#4a2fb0'
+                  ? '#0B6E54'
                   : val < 0.6
-                  ? '#6b3fe0'
+                  ? '#0E9E78'
                   : val < 0.8
-                  ? '#8b5cf6'
-                  : '#a855f7';
+                  ? '#10B981'
+                  : '#36FFC4';
               return (
                 <View
                   key={idx}
@@ -237,7 +239,7 @@ const SpendingScreen = () => {
           {/* Legend */}
           <View style={styles.heatmapLegend}>
             <Text style={styles.heatmapLegendLabel}>Less</Text>
-            {['#1a1530', '#2d1f6b', '#4a2fb0', '#6b3fe0', '#8b5cf6', '#a855f7'].map((c, i) => (
+            {['#0B1220', '#0A3A2E', '#0B6E54', '#0E9E78', '#10B981', '#36FFC4'].map((c, i) => (
               <View key={i} style={[styles.heatmapLegendBox, { backgroundColor: c }]} />
             ))}
             <Text style={styles.heatmapLegendLabel}>More</Text>
@@ -246,7 +248,7 @@ const SpendingScreen = () => {
 
         {/* AI Suggestions */}
         <View style={styles.suggestionsHeader}>
-          <Text style={styles.suggestionsIcon}>🤖</Text>
+          <Ionicons name="sparkles" size={20} color="#E0E3E5" />
           <Text style={styles.sectionTitle}>AI Suggestions</Text>
         </View>
         <FlatList
@@ -266,38 +268,38 @@ const SpendingScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0a0a0f' },
+  container: { flex: 1, backgroundColor: '#060B14' },
   scrollContent: { paddingHorizontal: 20, paddingTop: 54 },
   header: {
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18,
   },
-  headerTitle: { color: '#f0efff', fontSize: 24, fontWeight: '700' },
+  headerTitle: { color: '#E0E3E5', fontSize: 24, fontWeight: '700' },
   filterBtn: {
-    width: 40, height: 40, borderRadius: 12, backgroundColor: '#17171f',
-    alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    width: 40, height: 40, borderRadius: 12, backgroundColor: '#0F172A',
+    alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#1E293B',
   },
   filterIcon: { fontSize: 18 },
   monthList: { paddingBottom: 16, gap: 8 },
   monthPill: {
     paddingHorizontal: 18, paddingVertical: 10, borderRadius: 20,
-    backgroundColor: '#17171f', borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: '#0F172A', borderWidth: 1, borderColor: '#1E293B',
   },
-  monthPillActive: { backgroundColor: '#7c6aff', borderColor: '#7c6aff' },
-  monthText: { color: '#8884a8', fontSize: 13, fontWeight: '600' },
+  monthPillActive: { backgroundColor: '#10B981', borderColor: '#10B981' },
+  monthText: { color: '#859399', fontSize: 13, fontWeight: '600' },
   monthTextActive: { color: '#fff' },
   totalCard: {
     borderRadius: 20, padding: 24, marginBottom: 20,
-    borderWidth: 1, borderColor: 'rgba(124, 106, 255, 0.2)',
+    borderWidth: 1, borderColor: 'rgba(16, 185, 129, 0.2)',
   },
-  totalLabel: { color: '#8884a8', fontSize: 13, fontWeight: '600', marginBottom: 6 },
-  totalAmount: { color: '#f0efff', fontSize: 36, fontWeight: '700' },
+  totalLabel: { color: '#859399', fontSize: 13, fontWeight: '600', marginBottom: 6 },
+  totalAmount: { color: '#E0E3E5', fontSize: 36, fontWeight: '700' },
   totalTrend: { marginTop: 8 },
-  totalTrendText: { color: '#4effd6', fontSize: 13, fontWeight: '500' },
+  totalTrendText: { color: '#36FFC4', fontSize: 13, fontWeight: '500' },
   donutCard: {
-    backgroundColor: '#17171f', borderRadius: 20, padding: 20, marginBottom: 20,
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: '#0F172A', borderRadius: 20, padding: 20, marginBottom: 20,
+    borderWidth: 1, borderColor: '#1E293B',
   },
-  sectionTitle: { color: '#f0efff', fontSize: 18, fontWeight: '700', marginBottom: 16 },
+  sectionTitle: { color: '#E0E3E5', fontSize: 18, fontWeight: '700', marginBottom: 16 },
   donutContainer: { flexDirection: 'row', alignItems: 'center' },
   donutVisual: {
     width: 130, height: 130, alignItems: 'center', justifyContent: 'center', position: 'relative',
@@ -305,36 +307,36 @@ const styles = StyleSheet.create({
   donutCenterLabel: {
     position: 'absolute', alignItems: 'center', justifyContent: 'center',
   },
-  donutTotal: { color: '#f0efff', fontSize: 15, fontWeight: '700' },
-  donutSubtext: { color: '#8884a8', fontSize: 10, marginTop: 2 },
+  donutTotal: { color: '#E0E3E5', fontSize: 15, fontWeight: '700' },
+  donutSubtext: { color: '#859399', fontSize: 10, marginTop: 2 },
   donutLegend: { flex: 1, marginLeft: 20, gap: 12 },
   legendItem: { flexDirection: 'row', alignItems: 'center' },
   legendDot: { width: 10, height: 10, borderRadius: 5, marginRight: 10 },
   legendTextWrap: { flex: 1 },
-  legendName: { color: '#f0efff', fontSize: 13, fontWeight: '600' },
-  legendAmount: { color: '#8884a8', fontSize: 11, marginTop: 1 },
-  legendPct: { color: '#f0efff', fontSize: 14, fontWeight: '700', marginLeft: 8 },
+  legendName: { color: '#E0E3E5', fontSize: 13, fontWeight: '600' },
+  legendAmount: { color: '#859399', fontSize: 11, marginTop: 1 },
+  legendPct: { color: '#E0E3E5', fontSize: 14, fontWeight: '700', marginLeft: 8 },
   dailyCard: {
-    backgroundColor: '#17171f', borderRadius: 20, padding: 20, marginBottom: 20,
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: '#0F172A', borderRadius: 20, padding: 20, marginBottom: 20,
+    borderWidth: 1, borderColor: '#1E293B',
   },
   barChart: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', height: 140 },
   barCol: { alignItems: 'center', flex: 1 },
   barWrap: { width: 18, height: 110, justifyContent: 'flex-end' },
   bar: { width: 18, borderRadius: 9, minHeight: 6 },
-  barLabel: { color: '#8884a8', fontSize: 10, fontWeight: '600', marginTop: 6 },
-  barAmount: { color: '#8884a8', fontSize: 8, marginTop: 2 },
+  barLabel: { color: '#859399', fontSize: 10, fontWeight: '600', marginTop: 6 },
+  barAmount: { color: '#859399', fontSize: 8, marginTop: 2 },
   heatmapCard: {
-    backgroundColor: '#17171f', borderRadius: 20, padding: 20, marginBottom: 20,
-    borderWidth: 1, borderColor: 'rgba(168, 85, 247, 0.15)',
+    backgroundColor: '#0F172A', borderRadius: 20, padding: 20, marginBottom: 20,
+    borderWidth: 1, borderColor: 'rgba(16, 185, 129, 0.15)',
   },
-  heatmapSub: { color: '#8884a8', fontSize: 12, marginTop: -10, marginBottom: 14 },
+  heatmapSub: { color: '#859399', fontSize: 12, marginTop: -10, marginBottom: 14 },
   heatmapDayHeaders: {
     flexDirection: 'row', marginBottom: 6, paddingHorizontal: 2,
   },
   heatmapDayLabel: {
     width: (width - 100) / 7, textAlign: 'center',
-    color: '#8884a8', fontSize: 11, fontWeight: '600',
+    color: '#859399', fontSize: 11, fontWeight: '600',
   },
   heatmapGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 5 },
   heatCell: {
@@ -349,21 +351,21 @@ const styles = StyleSheet.create({
     marginTop: 14, gap: 4,
   },
   heatmapLegendBox: { width: 18, height: 10, borderRadius: 3 },
-  heatmapLegendLabel: { color: '#8884a8', fontSize: 10, fontWeight: '500', marginHorizontal: 4 },
+  heatmapLegendLabel: { color: '#859399', fontSize: 10, fontWeight: '500', marginHorizontal: 4 },
   suggestionsHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 8 },
   suggestionsIcon: { fontSize: 18 },
   suggestionsList: { paddingBottom: 8, gap: 12 },
   suggestionCard: {
-    width: 200, backgroundColor: '#17171f', borderRadius: 16, padding: 16,
-    borderWidth: 1, borderColor: 'rgba(255,255,255,0.06)',
+    width: 200, backgroundColor: '#0F172A', borderRadius: 16, padding: 16,
+    borderWidth: 1, borderColor: '#1E293B',
   },
   suggestionIcon: { fontSize: 24, marginBottom: 10 },
-  suggestionTitle: { color: '#f0efff', fontSize: 14, fontWeight: '700', marginBottom: 6 },
-  suggestionMsg: { color: '#8884a8', fontSize: 12, lineHeight: 17, marginBottom: 12 },
+  suggestionTitle: { color: '#E0E3E5', fontSize: 14, fontWeight: '700', marginBottom: 6 },
+  suggestionMsg: { color: '#859399', fontSize: 12, lineHeight: 17, marginBottom: 12 },
   suggestionSavings: {
-    backgroundColor: 'rgba(78, 255, 214, 0.1)', borderRadius: 8, paddingHorizontal: 10, paddingVertical: 5, alignSelf: 'flex-start',
+    backgroundColor: 'rgba(54, 255, 196, 0.1)', borderRadius: 8, paddingHorizontal: 10, paddingVertical: 5, alignSelf: 'flex-start',
   },
-  suggestionSavingsText: { color: '#4effd6', fontSize: 12, fontWeight: '700' },
+  suggestionSavingsText: { color: '#36FFC4', fontSize: 12, fontWeight: '700' },
 });
 
 export default SpendingScreen;

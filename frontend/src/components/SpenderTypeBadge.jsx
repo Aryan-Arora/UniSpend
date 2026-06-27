@@ -8,9 +8,9 @@ import { View, Text, StyleSheet } from 'react-native';
 // ─────────────────────────────────────────────────────────────
 
 const TYPES = {
-  low: { label: 'Smart Saver', color: '#4effd6', icon: '🟢', bg: 'rgba(78, 255, 214, 0.10)' },
-  moderate: { label: 'Balanced', color: '#ffd166', icon: '🟡', bg: 'rgba(255, 209, 102, 0.10)' },
-  high: { label: 'Heavy Spender', color: '#ff6b6b', icon: '🔴', bg: 'rgba(255, 107, 107, 0.10)' },
+  low: { label: 'Smart Saver', color: '#36FFC4', bg: 'rgba(54, 255, 196, 0.10)' },
+  moderate: { label: 'Balanced', color: '#36FFC4', bg: 'rgba(54, 255, 196, 0.10)' },
+  high: { label: 'Heavy Spender', color: '#ff6b6b', bg: 'rgba(255, 107, 107, 0.10)' },
 };
 
 const SpenderTypeBadge = ({ type = 'moderate' }) => {
@@ -18,7 +18,7 @@ const SpenderTypeBadge = ({ type = 'moderate' }) => {
 
   return (
     <View style={[styles.badge, { backgroundColor: config.bg, borderColor: config.color + '30' }]}>
-      <Text style={styles.icon}>{config.icon}</Text>
+      <View style={[styles.dot, { backgroundColor: config.color }]} />
       <Text style={[styles.label, { color: config.color }]}>{config.label}</Text>
     </View>
   );
@@ -35,8 +35,10 @@ const styles = StyleSheet.create({
     gap: 6,
     alignSelf: 'flex-start',
   },
-  icon: {
-    fontSize: 10,
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
   },
   label: {
     fontSize: 12,

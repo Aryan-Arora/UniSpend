@@ -2,10 +2,10 @@ import { useState, useCallback, useEffect } from 'react';
 import { subscriptionAPI } from '../services/api';
 
 const getTier = (total) => {
-  if (total >= 3000) return { name: 'Platinum', icon: '💎', color: '#e0e0e0' };
-  if (total >= 1500) return { name: 'Gold', icon: '🥇', color: '#ffd166' };
-  if (total >= 500) return { name: 'Silver', icon: '🥈', color: '#c0c0c0' };
-  return { name: 'Bronze', icon: '🥉', color: '#cd7f32' };
+  if (total >= 3000) return { name: 'Platinum', icon: '💎', color: '#E0E3E5' };
+  if (total >= 1500) return { name: 'Gold', icon: '🥇', color: '#36FFC4' };
+  if (total >= 500) return { name: 'Silver', icon: '🥈', color: '#859399' };
+  return { name: 'Bronze', icon: '🥉', color: '#859399' };
 };
 
 const getNextTier = (total) => {
@@ -42,7 +42,7 @@ export const useRewards = () => {
           merchant: (r.name || '').toUpperCase(),
           discount: r.type || 'DEAL',
           icon: '🎁',
-          color: ['#ff6b6b', '#ffd166', '#7c6aff', '#4effd6', '#c084fc'][idx % 5],
+          color: ['#ff6b6b', '#36FFC4', '#10B981', '#36FFC4', '#36FFC4'][idx % 5],
           expiresIn: r.expiration_date
             ? `${Math.max(0, Math.ceil((new Date(r.expiration_date) - new Date()) / 86400000))} days`
             : null,

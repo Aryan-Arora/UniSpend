@@ -120,30 +120,30 @@ export const useHome = () => {
         {
           title: 'Spent',
           value: formatCurrency(spent),
-          gradient: ['#7c6aff', '#9b8aff'],
+          gradient: ['#10B981', '#36FFC4'],
           subValue: 'This month',
           subColor: '#ff6b6b',
         },
         {
           title: 'Saved',
           value: formatCurrency(savedAmount > 0 ? savedAmount : 0),
-          gradient: ['#4effd6', '#2cb5a0'],
+          gradient: ['#36FFC4', '#10B981'],
           subValue: savedAmount > 0 ? 'On track' : 'Overspent',
-          subColor: savedAmount > 0 ? '#4effd6' : '#ff6b6b',
+          subColor: savedAmount > 0 ? '#36FFC4' : '#ff6b6b',
         },
         {
           title: 'Balance',
           value: formatCurrency(totalBalance),
-          gradient: ['#ffd166', '#e6b84d'],
+          gradient: ['#36FFC4', '#10B981'],
           subValue: `${(balance.accounts || []).length} accounts`,
-          subColor: '#ffd166',
+          subColor: '#36FFC4',
         },
         {
           title: 'Available',
           value: formatCurrency(balance.available || 0),
           gradient: ['#ff6b6b', '#ff8e8e'],
           subValue: 'To spend',
-          subColor: '#4effd6',
+          subColor: '#36FFC4',
         },
       ]);
     }
